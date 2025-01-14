@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         datos.add(new Encapsulador(R.drawable.imagen2, "Rigby", "Rigby", false));
         datos.add(new Encapsulador(R.drawable.imagen3, "Un fondo", "Un fondo", false));
         datos.add(new Encapsulador(R.drawable.imagen4, "Foto con David", "Foto con David", false));
-        datos.add(new Encapsulador(R.drawable.imagen5, "Juan estudiando", "Juan estudiando", false));
+        datos.add(new Encapsulador(R.drawable.imagen5, "bauletti balon de oro", "bauletti balon de oro", false));
         datos.add(new Encapsulador(R.drawable.imagen6, "Regular Show", "Regular Show", false));
         datos.add(new Encapsulador(R.drawable.imagen7, "Perro salchicha", "Perro salchicha", false));
 
@@ -57,21 +57,24 @@ public class MainActivity extends AppCompatActivity {
 
 
                     radioButton.setOnClickListener(v -> {
+
+                        // Si ya hay un RadioButton seleccionado, desmarcarlo
+                        if (radioButtonSeleccionado != null) {
+                            radioButtonSeleccionado.setChecked(false);
+                        }
+
+                        // Actualizar la imagen al seleccionar este RadioButton
+                        radioButtonSeleccionado = radioButton;
+                        item.setSeleccionado(true);
+
+                        // Cambiar la imagen cuando se marca el RadioButton
                         if (radioButton.isChecked()) {
-
-                            item.setSeleccionado(true); // Marcamos el item como seleccionado
-                            texto.setText("Seleccionado: " + item.getTextoTitulo());
-                        } else {
-
-                            item.setSeleccionado(false); // Desmarcamos el item
-                            texto.setText("Deseleccionado: " + item.getTextoTitulo());
+                            imagen.setImageResource(R.drawable.imagen_seleccionada); // Cambia esta imagen por la que desees
                         }
 
+                        // Actualizar el texto
+                        texto.setText("Seleccionado: " + item.getTextoTitulo());
 
-                        if (radioButtonSeleccionado != null && radioButtonSeleccionado != radioButton) {
-                            radioButtonSeleccionado.setChecked(false); // Desmarcar el otro RadioButton
-                        }
-                        radioButtonSeleccionado = radioButton; // Guardamos el RadioButton seleccionado
                     });
                 }
             }
